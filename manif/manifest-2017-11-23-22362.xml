@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Awmds>
+    <General_segment>
+        <General_segment_id>
+            <Customs_office_code>DD141</Customs_office_code>
+            <Voyage_number>050</Voyage_number>
+            <Date_of_departure>2017-11-15</Date_of_departure>
+            <Date_of_arrival>2017-11-20</Date_of_arrival>
+            <Time_of_arrival>12:00</Time_of_arrival>
+        </General_segment_id>
+        <Totals_segment>
+            <Total_number_of_bols>2</Total_number_of_bols>
+            <Total_number_of_packages>2</Total_number_of_packages>
+            <Total_number_of_containers>2</Total_number_of_containers>
+            <Total_gross_mass>200.0</Total_gross_mass>
+        </Totals_segment>
+        <Transport_information>
+            <Carrier>
+                <Carrier_code>D3</Carrier_code>
+                <Carrier_name>ATLAS LOGISTIQUE</Carrier_name>
+                <Carrier_address>BP:552</Carrier_address>
+            </Carrier>
+            <Shipping_Agent/>
+            <Mode_of_transport_code>10</Mode_of_transport_code>
+            <Identity_of_transporter>African Chaser</Identity_of_transporter>
+            <Nationality_of_transporter_code>MT</Nationality_of_transporter_code>
+            <Place_of_transporter></Place_of_transporter>
+            <Registration_number_of_transport_code></Registration_number_of_transport_code>
+            <Master_information></Master_information>
+        </Transport_information>
+        <Load_unload_place/>
+        <Tonnage>
+            <Tonnage_net_weight>0.0</Tonnage_net_weight>
+            <Tonnage_gross_weight>0.0</Tonnage_gross_weight>
+        </Tonnage>
+    </General_segment>
+</Awmds>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<Awmds>
+    <General_segment>
+        <General_segment_id>
+            <Customs_office_code>DD141</Customs_office_code>
+            <Voyage_number>52</Voyage_number>
+            <Date_of_departure>2017-11-17</Date_of_departure>
+            <Date_of_arrival>2017-11-19</Date_of_arrival>
+            <Time_of_arrival>10:00:00</Time_of_arrival>
+        </General_segment_id>
+        <Totals_segment>
+            <Total_number_of_bols>1</Total_number_of_bols>
+            <Total_number_of_packages>1</Total_number_of_packages>
+            <Total_number_of_containers>0</Total_number_of_containers>
+            <Total_gross_mass>11914.0</Total_gross_mass>
+        </Totals_segment>
+        <Transport_information>
+            <Carrier>
+                <Carrier_code>D6</Carrier_code>
+                <Carrier_name>IGS LOGISTICS</Carrier_name>
+                <Carrier_address>IMMEUBLE PBG 2 ETAGE</Carrier_address>
+            </Carrier>
+            <Mode_of_transport_code>10</Mode_of_transport_code>
+            <Identity_of_transporter>MV CMB CHARLOTTE</Identity_of_transporter>
+            <Nationality_of_transporter_code>HK</Nationality_of_transporter_code>
+            <Place_of_transporter></Place_of_transporter>
+            <Registration_number_of_transport_code></Registration_number_of_transport_code>
+            <Master_information>POSTERO ARNEL LEO PUNAY</Master_information>
+        </Transport_information>
+        <Load_unload_place/>
+        <Tonnage>
+            <Tonnage_net_weight>0.0</Tonnage_net_weight>
+            <Tonnage_gross_weight>0.0</Tonnage_gross_weight>
+        </Tonnage>
+    </General_segment>
+    <Bol_segment>
+        <Bol_id>
+            <Bol_reference>1</Bol_reference>
+            <Line_number>1</Line_number>
+            <Bol_nature>23</Bol_nature>
+            <Bol_type_code>CO2</Bol_type_code>
+        </Bol_id>
+        <Load_unload_place>
+            <Place_of_loading_code>MASFI</Place_of_loading_code>
+            <Place_of_unloading_code>CGPNR</Place_of_unloading_code>
+        </Load_unload_place>
+        <Traders_segment>
+            <Exporter>
+                <Exporter_code></Exporter_code>
+                <Exporter_name></Exporter_name>
+                <Exporter_address></Exporter_address>
+            </Exporter>
+            <Notify>
+                <Notify_code></Notify_code>
+                <Notify_name>FORSPAK INTERNATIONAL</Notify_name>
+                <Notify_address></Notify_address>
+            </Notify>
+            <Consignee>
+                <Consignee_code></Consignee_code>
+                <Consignee_name>IGS LOGISTICS</Consignee_name>
+                <Consignee_address></Consignee_address>
+            </Consignee>
+        </Traders_segment>
+        <Goods_segment>
+            <Number_of_packages>1.0</Number_of_packages>
+            <Package_type_code>15</Package_type_code>
+            <Gross_mass>11914.0</Gross_mass>
+            <Shipping_marks></Shipping_marks>
+            <Goods_description>GYPSUM</Goods_description>
+            <Seals_segment>
+                <Number_of_seals>0</Number_of_seals>
+                <Marks_of_seals></Marks_of_seals>
+                <Sealing_party_code></Sealing_party_code>
+            </Seals_segment>
+            <Volume_in_cubic_meters>0.0</Volume_in_cubic_meters>
+            <Num_of_ctn_for_this_bol>0</Num_of_ctn_for_this_bol>
+            <Information></Information>
+        </Goods_segment>
+        <Value_segment/>
+        <Location>
+            <Location_code>ESSAI </Location_code>
+            <Location_info>Magasin test</Location_info>
+        </Location>
+    </Bol_segment>
+</Awmds>

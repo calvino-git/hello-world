@@ -1,0 +1,1442 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.TreeView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.TilePane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="mainWindow" maxHeight="700.0" maxWidth="1250.0" minHeight="700.0" minWidth="1250.0" prefHeight="700.0" prefWidth="1250.0" xmlns="http://javafx.com/javafx/8.0.111" xmlns:fx="http://javafx.com/fxml/1" fx:controller="manifest.manifestController">
+   <children>
+      <VBox id="root" fx:id="vboxmain" maxHeight="800.0" maxWidth="1280.0" minHeight="748.0" minWidth="1280.0" prefHeight="748.0" prefWidth="1280.0" styleClass="gradient" stylesheets="@style.css">
+        <children>
+          <AnchorPane minHeight="-Infinity" minWidth="-Infinity" prefHeight="60.0" prefWidth="900.0">
+               <children>
+                  <ImageView fitHeight="133.0" fitWidth="1280.0" pickOnBounds="true" preserveRatio="true" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <image>
+                        <Image url="@../bannier.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="client" layoutX="10.0" layoutY="10.0" minHeight="-Infinity" minWidth="-Infinity" prefHeight="50.0" prefWidth="308.0" text="socotrans" textFill="#094872">
+                     <font>
+                        <Font name="Impact" size="24.0" />
+                     </font>
+                  </Label>
+               </children>
+          </AnchorPane>
+          <SplitPane dividerPositions="0.16118935837245696" focusTraversable="true" prefHeight="658.0" prefWidth="1280.0" VBox.vgrow="ALWAYS">
+            <items>
+              <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="645.0" prefWidth="176.0">
+                     <children>
+                        <TreeView fx:id="tree2" layoutX="1.0" layoutY="30.0" prefHeight="616.0" prefWidth="200.0" />
+                        <TilePane layoutX="1.0" prefHeight="30.0" prefWidth="200.0" />
+                     </children>
+              </AnchorPane>
+              <VBox>
+                     <children>
+                        <Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="70.0" prefWidth="1068.0">
+                           <children>
+                              <HBox layoutX="-6.0" layoutY="4.0" prefHeight="65.0" prefWidth="1068.0">
+                                 <children>
+                                    <Button fx:id="nouveau" alignment="CENTER" focusTraversable="false" mnemonicParsing="false" prefHeight="65.0" prefWidth="203.0" styleClass="btn-default" text="Nouveau" wrapText="true">
+                                       <padding>
+                                          <Insets right="1.0" />
+                                       </padding>
+                                       <HBox.margin>
+                                          <Insets left="50.0" right="10.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                    <Button fx:id="enregistrer" alignment="CENTER" focusTraversable="false" layoutX="206.0" layoutY="10.0" mnemonicParsing="false" prefHeight="65.0" prefWidth="265.0" text="Enregistrer" wrapText="true">
+                                       <padding>
+                                          <Insets right="1.0" />
+                                       </padding>
+                                       <styleClass>
+                                          <String fx:value="btn-default" />
+                                          <String fx:value="btn-default" />
+                                       </styleClass>
+                                    </Button>
+                                    <Button fx:id="importXML" alignment="CENTER" focusTraversable="false" layoutX="243.0" layoutY="10.0" mnemonicParsing="false" onAction="#uploadXml" prefHeight="65.0" prefWidth="227.0" styleClass="btn-default" text="Importer XML" wrapText="true">
+                                       <padding>
+                                          <Insets right="1.0" />
+                                       </padding>
+                                       <HBox.margin>
+                                          <Insets left="50.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                    <Button fx:id="enregistrerXML" alignment="CENTER" focusTraversable="false" layoutX="416.0" layoutY="10.0" mnemonicParsing="false" onAction="#saveXML" prefHeight="65.0" prefWidth="219.0" styleClass="btn-default" text="Enregister XML" wrapText="true">
+                                       <padding>
+                                          <Insets right="1.0" />
+                                       </padding>
+                                       <HBox.margin>
+                                          <Insets left="10.0" />
+                                       </HBox.margin>
+                                    </Button>
+                                 </children>
+                              </HBox>
+                              <Text id="info" layoutX="649.0" layoutY="-12.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Ajout d'un segment général" wrappingWidth="415.5164794921875">
+                                 <font>
+                                    <Font size="32.0" />
+                                 </font>
+                              </Text>
+                           </children>
+                        </Pane>
+                        <Separator />
+                    <ScrollPane prefHeight="587.0" prefWidth="1093.0">
+                      <content>
+                        <AnchorPane id="Content" minHeight="-Infinity" minWidth="-Infinity" prefHeight="585.0" prefWidth="1066.0">
+                                 <children>
+                                    <TabPane fx:id="tabPane" prefHeight="587.0" prefWidth="1068.0" tabClosingPolicy="UNAVAILABLE">
+                                      <tabs>
+                                        <Tab fx:id="manifestTab" text="Manifest">
+                                          <content>
+                                            <AnchorPane fx:id="manifestArea" prefHeight="180.0" prefWidth="1068.0">
+                                                   <children>
+                                                      <ScrollPane>
+                                                         <content>
+                                                            <VBox prefHeight="544.0" prefWidth="1068.0">
+                                                               <children>
+                                                                  <HBox layoutX="10.0" layoutY="300.0" prefHeight="225.0" prefWidth="1068.0">
+                                                                     <opaqueInsets>
+                                                                        <Insets />
+                                                                     </opaqueInsets>
+                                                                     <children>
+                                                                        <VBox prefHeight="227.0" prefWidth="345.0" spacing="2.0" style="-fx-background-color: #e7e7e7;">
+                                                                           <children>
+                                                                              <Label layoutX="15.0" layoutY="62.0" text="Bureau de départ/arrivée">
+                                                                                 <VBox.margin>
+                                                                                    <Insets left="5.0" top="5.0" />
+                                                                                 </VBox.margin>
+                                                                              </Label>
+                                                                              <HBox prefHeight="45.0" prefWidth="669.0" style="-fx-background-color: #e7e7e7;">
+                                                                                 <children>
+                                                                                    <ComboBox fx:id="customOfficeCode" maxWidth="144.0" prefHeight="27.0" prefWidth="120.0" promptText="Ex: DD141">
+                                                                                       <HBox.margin>
+                                                                                          <Insets bottom="2.0" top="5.0" />
+                                                                                       </HBox.margin>
+                                                                                    </ComboBox>
+                                                                                    <TextField fx:id="custumOfficName" disable="true" focusTraversable="false" layoutX="123.0" layoutY="15.0" maxWidth="345.0" prefHeight="27.0" prefWidth="201.0" promptText="Nom du bureau">
+                                                                                       <HBox.margin>
+                                                                                          <Insets bottom="2.0" left="10.0" top="5.0" />
+                                                                                       </HBox.margin>
+                                                                                    </TextField>
+                                                                                 </children>
+                                                                                 <VBox.margin>
+                                                                                    <Insets left="5.0" />
+                                                                                 </VBox.margin>
+                                                                              </HBox>
+                                                                              <Label text="Numéro de voyage">
+                                                                                 <VBox.margin>
+                                                                                    <Insets left="5.0" top="5.0" />
+                                                                                 </VBox.margin>
+                                                                              </Label>
+                                                                              <TextField fx:id="voyageNumber" maxWidth="-Infinity" prefHeight="27.0" prefWidth="200.0" promptText="Numero de voyage">
+                                                                                 <VBox.margin>
+                                                                                    <Insets left="5.0" top="5.0" />
+                                                                                 </VBox.margin>
+                                                                              </TextField>
+                                                                              <Label>
+                                                                                 <VBox.margin>
+                                                                                    <Insets left="5.0" top="5.0" />
+                                                                                 </VBox.margin>
+                                                                              </Label>
+                                                                              <Label text="Date fin de décharge">
+                                                                                 <VBox.margin>
+                                                                                    <Insets left="5.0" top="5.0" />
+                                                                                 </VBox.margin>
+                                                                              </Label>
+                                                                              <DatePicker fx:id="lastDischarge" maxWidth="-Infinity" prefHeight="27.0" prefWidth="200.0" promptText="Date Dernière Décharge">
+                                                                                 <VBox.margin>
+                                                                                    <Insets left="5.0" right="5.0" />
+                                                                                 </VBox.margin>
+                                                                             </DatePicker>
+                                                                           </children>
+                                                                           <HBox.margin>
+                                                                              <Insets left="5.0" />
+                                                                           </HBox.margin>
+                                                                        </VBox>
+                                                                        <VBox layoutX="10.0" layoutY="10.0" prefHeight="227.0" prefWidth="350.0" spacing="2.0" style="-fx-background-color: #e7e7e7;">
+                                                                           <children>
+                                                                              <Label layoutX="10.0" layoutY="54.0" text="Date de départ">
+                                                                                 <VBox.margin>
+                                                                                    <Insets left="5.0" top="5.0" />
+                                                                                 </VBox.margin>
+                                                                              </Label>
+                                                                              <DatePicker fx:id="departureDate" layoutX="10.0" layoutY="71.0" prefHeight="27.0" prefWidth="200.0" promptText="date de départ">
+                                                                                 <VBox.margin>
+                                                                                    <Insets left="5.0" right="5.0" />
+                                                                                 </VBox.margin>
+                                                                              </DatePicker>
+                                                                              <Label layoutX="15.0" layoutY="122.0" text="Date et heure d'arrivée">
+                                                                                 <VBox.margin>
+                                                                                    <Insets left="5.0" top="5.0" />
+                                                                                 </VBox.margin>
+                                                                              </Label>
+                                                                              <HBox layoutX="10.0" layoutY="139.0" prefHeight="29.0" prefWidth="257.0">
+                                                                                 <children>
+                                                                                    <HBox>
+                                                                                       <children>
+                                                                                          <DatePicker fx:id="arrivalDate" maxWidth="426.0" prefHeight="27.0" prefWidth="200.0" promptText="Date d'arrivée">
+                                                                                             <HBox.margin>
+                                                                                                <Insets left="5.0" />
+                                                                                             </HBox.margin>
+                                                                                          </DatePicker>
+                                                                                       </children>
+                                                                                    </HBox>
+                                                                                    <HBox layoutX="10.0" layoutY="10.0">
+                                                                                       <children>
+                                                                                          <TextField fx:id="arrivalTime" maxWidth="270.0" prefHeight="27.0" prefWidth="100.0" promptText="Heure" />
+                                                                                       </children>
+                                                                                    </HBox>
+                                                                                 </children>
+                                                                                 <VBox.margin>
+                                                                                    <Insets right="16.0" />
+                                                                                 </VBox.margin>
+                                                                              </HBox>
+                                                                              <Label layoutX="10.0" layoutY="98.0" text="Port de départ">
+                                                                                 <VBox.margin>
+                                                                                    <Insets left="5.0" top="5.0" />
+                                                                                 </VBox.margin>
+                                                                              </Label>
+                                                                              <HBox prefHeight="27.0" prefWidth="244.0">
+                                                                                 <VBox.margin>
+                                                                                    <Insets left="5.0" right="5.0" />
+                                                                                 </VBox.margin>
+                                                                                 <children>
+                                                                                    <HBox>
+                                                                                       <children>
+                                                                                          <ComboBox fx:id="departurePlaceCode" maxWidth="250.0" prefHeight="27.0" prefWidth="164.0" promptText="Ex: Paris" />
+                                                                                       </children>
+                                                                                    </HBox>
+                                                                                    <HBox layoutX="10.0" layoutY="10.0">
+                                                                                       <children>
+                                                                                          <TextField fx:id="departurePlaceName" disable="true" focusTraversable="false" maxWidth="270.0" prefHeight="27.0" prefWidth="223.0" promptText="Lieu de départ" />
+                                                                                       </children>
+                                                                                    </HBox>
+                                                                                 </children>
+                                                                              </HBox>
+                                                                              <Label layoutX="15.0" layoutY="58.0" text="Port de destination">
+                                                                                 <VBox.margin>
+                                                                                    <Insets left="5.0" top="5.0" />
+                                                                                 </VBox.margin>
+                                                                              </Label>
+                                                                              <HBox layoutX="15.0" layoutY="75.0">
+                                                                                 <children>
+                                                                                    <HBox />
+                                                                                    <HBox layoutX="10.0" layoutY="10.0">
+                                                                                       <children>
+                                                                                          <ComboBox fx:id="destPlaceCode" maxWidth="250.0" prefHeight="27.0" prefWidth="157.0" promptText="Ex: PNR">
+                                                                                             <HBox.margin>
+                                                                                                <Insets left="5.0" />
+                                                                                             </HBox.margin>
+                                                                                          </ComboBox>
+                                                                                          <TextField fx:id="destPlaceName" disable="true" maxWidth="270.0" prefHeight="27.0" prefWidth="220.0" promptText="Lieu de destination">
+                                                                                             <HBox.margin>
+                                                                                                <Insets right="2.0" />
+                                                                                             </HBox.margin>
+                                                                                          </TextField>
+                                                                                       </children>
+                                                                                    </HBox>
+                                                                                 </children>
+                                                                              </HBox>
+                                                                           </children>
+                                                                           <HBox.margin>
+                                                                              <Insets />
+                                                                           </HBox.margin>
+                                                                        </VBox>
+                                                                        <VBox prefHeight="227.0" prefWidth="345.0" spacing="2.0" style="-fx-background-color: #e7e7e7;">
+                                                                           <children>
+                                                                              <Label text="TONNAGE">
+                                                                                 <font>
+                                                                                    <Font name="Impact" size="16.0" />
+                                                                                 </font>
+                                                                                 <VBox.margin>
+                                                                                    <Insets left="5.0" top="5.0" />
+                                                                                 </VBox.margin>
+                                                                              </Label>
+                                                                              <Label text="Poids brut(en tonne)">
+                                                                                 <VBox.margin>
+                                                                                    <Insets left="5.0" top="5.0" />
+                                                                                 </VBox.margin>
+                                                                              </Label>
+                                                                              <TextField fx:id="tonnageGross" maxWidth="-Infinity" prefHeight="27.0" prefWidth="200.0" promptText="Poids brut">
+                                                                                 <VBox.margin>
+                                                                                    <Insets left="5.0" />
+                                                                                 </VBox.margin>
+                                                                              </TextField>
+                                                                              <Label text="Poids net(en tonne)">
+                                                                                 <VBox.margin>
+                                                                                    <Insets left="5.0" top="2.0" />
+                                                                                 </VBox.margin>
+                                                                              </Label>
+                                                                              <TextField fx:id="tonnageNet" maxWidth="-Infinity" prefHeight="27.0" prefWidth="200.0" promptText="Poids net">
+                                                                                 <VBox.margin>
+                                                                                    <Insets left="5.0" right="10.0" />
+                                                                                 </VBox.margin>
+                                                                              </TextField>
+                                                                              <Label text="Agent maritime">
+                                                                                 <VBox.margin>
+                                                                                    <Insets left="5.0" top="7.0" />
+                                                                                 </VBox.margin>
+                                                                                 <font>
+                                                                                    <Font name="Impact" size="16.0" />
+                                                                                 </font>
+                                                                              </Label>
+                                                                              <HBox prefHeight="100.0" prefWidth="200.0">
+                                                                                 <children>
+                                                                                    <TextField fx:id="shippingAgentCode" prefHeight="27.0" prefWidth="91.0" promptText="Code">
+                                                                                       <HBox.margin>
+                                                                                          <Insets bottom="5.0" left="5.0" top="10.0" />
+                                                                                       </HBox.margin>
+                                                                                    </TextField>
+                                                                                    <TextField fx:id="shippingAgentName" layoutX="10.0" layoutY="10.0" prefHeight="27.0" prefWidth="200.0" promptText="Agent maritime">
+                                                                                       <HBox.margin>
+                                                                                          <Insets bottom="5.0" left="10.0" right="10.0" top="10.0" />
+                                                                                       </HBox.margin>
+                                                                                    </TextField>
+                                                                                 </children>
+                                                                              </HBox>
+                                                                           </children>
+                                                                           <HBox.margin>
+                                                                              <Insets left="10.0" />
+                                                                           </HBox.margin>
+                                                                        </VBox>
+                                                                     </children>
+                                                                     <VBox.margin>
+                                                                        <Insets top="10.0" />
+                                                                     </VBox.margin>
+                                                                  </HBox>
+                                                                  <HBox layoutX="10.0" layoutY="10.0" prefHeight="253.0" prefWidth="1068.0">
+                                                                     <VBox.margin>
+                                                                        <Insets top="10.0" />
+                                                                     </VBox.margin>
+                                                                     <opaqueInsets>
+                                                                        <Insets />
+                                                                     </opaqueInsets>
+                                                                     <children>
+                                                                        <VBox prefHeight="212.0" prefWidth="250.0" spacing="2.0" style="-fx-background-color: #e7e7e7;">
+                                                                           <children>
+                                                                              <Label text="Transporteur">
+                                                                                 <font>
+                                                                                    <Font name="Impact" size="16.0" />
+                                                                                 </font>
+                                                                                 <VBox.margin>
+                                                                                    <Insets left="5.0" />
+                                                                                 </VBox.margin>
+                                                                              </Label>
+                                                                              <Label>
+                                                                                 <VBox.margin>
+                                                                                    <Insets left="5.0" />
+                                                                                 </VBox.margin>
+                                                                              </Label>
+                                                                              <TextField fx:id="carrierCode" maxWidth="155.0" prefHeight="27.0" prefWidth="155.0" promptText="Code du transporteur">
+                                                                                 <VBox.margin>
+                                                                                    <Insets left="5.0" />
+                                                                                 </VBox.margin>
+                                                                              </TextField>
+                                                                              <TextField fx:id="carrierName" maxWidth="300.0" prefHeight="27.0" prefWidth="229.0" promptText="Nom du transporteur">
+                                                                                 <VBox.margin>
+                                                                                    <Insets left="5.0" right="10.0" top="5.0" />
+                                                                                 </VBox.margin>
+                                                                              </TextField>
+                                                                              <TextArea fx:id="carrierAdress" maxHeight="100.0" maxWidth="300.0" minHeight="68.0" prefHeight="68.0" prefWidth="235.0" promptText="Adresse du transporteur" style="-fx-background-radius: 5;">
+                                                                                 <VBox.margin>
+                                                                                    <Insets left="5.0" right="10.0" />
+                                                                                 </VBox.margin>
+                                                                              </TextArea>
+                                                                           </children>
+                                                                           <HBox.margin>
+                                                                              <Insets left="5.0" />
+                                                                           </HBox.margin>
+                                                                        </VBox>
+                                                                        <VBox layoutX="10.0" layoutY="10.0" prefHeight="250.0" prefWidth="217.0" style="-fx-background-color: #e7e7e7;">
+                                                                           <children>
+                                                                              <Label text="TOTAUX">
+                                                                                 <font>
+                                                                                    <Font name="Impact" size="16.0" />
+                                                                                 </font>
+                                                                              </Label>
+                                                                              <Label text="Titres de transport">
+                                                                                 <VBox.margin>
+                                                                                    <Insets left="5.0" />
+                                                                                 </VBox.margin>
+                                                                              </Label>
+                                                                              <TextField fx:id="totalNbrBol" maxWidth="200.0" promptText="Titres de transport">
+                                                                                 <VBox.margin>
+                                                                                    <Insets left="5.0" right="5.0" />
+                                                                                 </VBox.margin>
+                                                                              </TextField>
+                                                                              <Label layoutX="10.0" layoutY="10.0" text="Colis">
+                                                                                 <VBox.margin>
+                                                                                    <Insets left="5.0" top="17.0" />
+                                                                                 </VBox.margin>
+                                                                              </Label>
+                                                                              <TextField fx:id="totalNbrPkg" layoutX="10.0" layoutY="27.0" maxWidth="200.0" promptText="Nombre de colis">
+                                                                                 <VBox.margin>
+                                                                                    <Insets left="5.0" right="5.0" />
+                                                                                 </VBox.margin>
+                                                                              </TextField>
+                                                                              <Label layoutX="10.0" layoutY="54.0" text="Conteneurs">
+                                                                                 <VBox.margin>
+                                                                                    <Insets left="5.0" />
+                                                                                 </VBox.margin>
+                                                                              </Label>
+                                                                              <TextField fx:id="totalNbrCtn" layoutX="10.0" layoutY="71.0" maxWidth="200.0" promptText="Nombre de Conteneurs">
+                                                                                 <VBox.margin>
+                                                                                    <Insets left="5.0" right="5.0" />
+                                                                                 </VBox.margin>
+                                                                              </TextField>
+                                                                              <Label layoutX="10.0" layoutY="98.0" text="Poids brut(en kg)">
+                                                                                 <VBox.margin>
+                                                                                    <Insets left="5.0" top="15.0" />
+                                                                                 </VBox.margin>
+                                                                              </Label>
+                                                                              <TextField fx:id="totalGrossMass" layoutX="10.0" layoutY="115.0" maxWidth="200.0" promptText="Poids brut">
+                                                                                 <VBox.margin>
+                                                                                    <Insets left="5.0" right="5.0" />
+                                                                                 </VBox.margin>
+                                                                              </TextField>
+                                                                           </children>
+                                                                           <HBox.margin>
+                                                                              <Insets />
+                                                                           </HBox.margin>
+                                                                        </VBox>
+                                                                        <VBox layoutX="345.0" layoutY="10.0" maxWidth="-Infinity" prefHeight="250.0" prefWidth="327.0" spacing="2.0" style="-fx-background-color: #e7e7e7;">
+                                                                           <children>
+                                                                              <Label layoutX="10.0" layoutY="10.0" text="Mode de transport">
+                                                                                 <VBox.margin>
+                                                                                    <Insets left="5.0" top="15.0" />
+                                                                                 </VBox.margin>
+                                                                              </Label>
+                                                                              <HBox>
+                                                                                 <VBox.margin>
+                                                                                    <Insets left="5.0" />
+                                                                                 </VBox.margin>
+                                                                                 <children>
+                                                                                    <ComboBox fx:id="transportModeCode" maxWidth="-Infinity" prefHeight="27.0" prefWidth="100.0" promptText="Mode" />
+                                                                                    <TextField fx:id="transportModeName" disable="true" layoutX="10.0" layoutY="10.0" maxWidth="250.0" prefWidth="200.0">
+                                                                                       <HBox.margin>
+                                                                                          <Insets left="5.0" />
+                                                                                       </HBox.margin>
+                                                                                    </TextField>
+                                                                                 </children>
+                                                                              </HBox>
+                                                                              <Label layoutX="10.0" layoutY="54.0" text="Nationalité">
+                                                                                 <VBox.margin>
+                                                                                    <Insets left="5.0" />
+                                                                                 </VBox.margin>
+                                                                              </Label>
+                                                                              <HBox prefHeight="27.0" prefWidth="228.0">
+                                                                                 <VBox.margin>
+                                                                                    <Insets left="5.0" />
+                                                                                 </VBox.margin>
+                                                                                 <children>
+                                                                                    <ComboBox fx:id="transportNationalityCode" maxWidth="250.0" prefHeight="27.0" prefWidth="100.0" promptText="ex:CG" />
+                                                                                    <TextField fx:id="transportNationalityName" disable="true" layoutX="10.0" layoutY="10.0" maxWidth="281.0" prefHeight="27.0" prefWidth="200.0">
+                                                                                       <HBox.margin>
+                                                                                          <Insets left="5.0" />
+                                                                                       </HBox.margin>
+                                                                                    </TextField>
+                                                                                 </children>
+                                                                              </HBox>
+                                                                              <!--Label layoutX="10.0" layoutY="98.0" text="Enregistrement">
+                                                                                 <VBox.margin>
+                                                                                    <Insets left="5.0" />
+                                                                                 </VBox.margin>
+                                                                              </Label>
+                                                                              <TextField fx:id="transportRegistration" layoutX="10.0" layoutY="115.0" maxWidth="250.0" prefHeight="27.0" prefWidth="241.0" promptText="Numero d'enregistrement">
+                                                                                 <VBox.margin>
+                                                                                    <Insets left="5.0" right="10.0" />
+                                                                                 </VBox.margin>
+                                                                              </TextField-->
+                                                                           </children>
+                                                                           <HBox.margin>
+                                                                              <Insets left="10.0" />
+                                                                           </HBox.margin>
+                                                                        </VBox>
+                                                                        <VBox layoutX="540.0" layoutY="10.0" prefHeight="250.0" prefWidth="245.0" style="-fx-background-color: #e7e7e7;">
+                                                                           <children>
+                                                                              <Label text="Identité du transporteur">
+                                                                                 <VBox.margin>
+                                                                                    <Insets left="15.0" top="16.0" />
+                                                                                 </VBox.margin>
+                                                                              </Label>
+                                                                              <TextField fx:id="transportIdentity" maxWidth="-Infinity" prefWidth="200.0" promptText="Identité du transporteur">
+                                                                                 <VBox.margin>
+                                                                                    <Insets left="15.0" right="10.0" />
+                                                                                 </VBox.margin>
+                                                                              </TextField>
+                                                                              <Label layoutX="10.0" layoutY="10.0" text="Lieu du transporteur">
+                                                                                 <VBox.margin>
+                                                                                    <Insets left="15.0" top="5.0" />
+                                                                                 </VBox.margin>
+                                                                              </Label>
+                                                                              <TextField fx:id="transportPlace" layoutX="10.0" layoutY="27.0" maxWidth="-Infinity" prefWidth="200.0" promptText="Lieu du transporteur">
+                                                                                 <VBox.margin>
+                                                                                    <Insets left="15.0" right="10.0" />
+                                                                                 </VBox.margin>
+                                                                              </TextField>
+                                                                              <Label text="Conducteur">
+                                                                                 <VBox.margin>
+                                                                                    <Insets left="15.0" />
+                                                                                 </VBox.margin>
+                                                                              </Label>
+                                                                              <TextField fx:id="transportMaster" maxWidth="-Infinity" prefHeight="27.0" prefWidth="200.0" promptText="Nom du capitain">
+                                                                                 <VBox.margin>
+                                                                                    <Insets left="15.0" right="10.0" />
+                                                                                 </VBox.margin>
+                                                                              </TextField>
+                                                                           </children>
+                                                                           <HBox.margin>
+                                                                              <Insets right="12.0" />
+                                                                           </HBox.margin>
+                                                                        </VBox>
+                                                                     </children>
+                                                                  </HBox>
+                                                               </children>
+                                                            </VBox>
+                                                         </content>
+                                                      </ScrollPane>
+                                                   </children>
+                                                </AnchorPane>
+                                          </content>
+                                        </Tab>
+                                        <Tab fx:id="bol" text="Titre de transport">
+                                          <content>
+                                            <AnchorPane fx:id="bolAnchor" minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                   <children>
+                                                      <ScrollPane layoutX="5.0" layoutY="7.0" AnchorPane.bottomAnchor="3.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="7.0">
+                                                         <content>
+                                                            <VBox prefHeight="856.0" prefWidth="1033.0">
+                                                               <children>
+                                                                  <HBox layoutX="10.0" layoutY="300.0">
+                                                                     <opaqueInsets>
+                                                                        <Insets />
+                                                                     </opaqueInsets>
+                                                                     <children>
+                                                                        <HBox>
+                                                                           <children>
+                                                                              <VBox prefHeight="227.0" prefWidth="279.0" spacing="2.0" style="-fx-background-color: #e7e7e7;">
+                                                                                 <children>
+                                                                                    <Label text="Numéro de voyage">
+                                                                                       <VBox.margin>
+                                                                                          <Insets left="5.0" top="2.0" />
+                                                                                       </VBox.margin>
+                                                                                    </Label>
+                                                                                    <TextField fx:id="blVoyageNbr" maxWidth="178.0" prefHeight="27.0" prefWidth="178.0" promptText="Numero de voyage">
+                                                                                       <VBox.margin>
+                                                                                          <Insets left="5.0" />
+                                                                                       </VBox.margin>
+                                                                                    </TextField>
+                                                                                    <Label text="N° de référence T/T">
+                                                                                       <VBox.margin>
+                                                                                          <Insets left="5.0" top="20.0" />
+                                                                                       </VBox.margin>
+                                                                                    </Label>
+                                                                                    <HBox>
+                                                                                       <VBox.margin>
+                                                                                          <Insets left="5.0" right="5.0" />
+                                                                                       </VBox.margin>
+                                                                                       <children>
+                                                                                          <TextField fx:id="blRefNbr" maxWidth="289.0" prefHeight="27.0" prefWidth="178.0" promptText="CSA0001" />
+                                                                                       </children>
+                                                                                    </HBox>
+                                                                                    <Label layoutX="10.0" layoutY="10.0" text="Type de titre de transport">
+                                                                                       <VBox.margin>
+                                                                                          <Insets left="5.0" top="20.0" />
+                                                                                       </VBox.margin>
+                                                                                    </Label>
+                                                                                    <HBox layoutX="10.0" layoutY="152.0" prefHeight="28.0" prefWidth="294.0">
+                                                                                       <children>
+                                                                                          <ComboBox fx:id="blTypeCode" editable="true" prefHeight="27.0" prefWidth="84.0" promptText="CO2">
+                                                                                             <HBox.margin>
+                                                                                                <Insets left="5.0" />
+                                                                                             </HBox.margin>
+                                                                                          </ComboBox>
+                                                                                          <TextField fx:id="blTypeName" layoutX="10.0" layoutY="10.0" prefHeight="27.0" prefWidth="178.0" promptText="Type">
+                                                                                             <HBox.margin>
+                                                                                                <Insets left="2.0" />
+                                                                                             </HBox.margin>
+                                                                                          </TextField>
+                                                                                       </children>
+                                                                                    </HBox>
+                                                                                 </children>
+                                                                              </VBox>
+                                                                              <VBox prefHeight="227.0" prefWidth="269.0" style="-fx-background-color: #e7e7e7;">
+                                                                                 <children>
+                                                                                    <Label layoutX="10.0" layoutY="54.0" text="Date de départ">
+                                                                                       <VBox.margin>
+                                                                                          <Insets left="5.0" top="2.0" />
+                                                                                       </VBox.margin>
+                                                                                    </Label>
+                                                                                    <DatePicker fx:id="blDepDate" layoutX="10.0" layoutY="71.0" maxWidth="250.0" promptText="30/08/2017">
+                                                                                       <VBox.margin>
+                                                                                          <Insets left="5.0" right="5.0" />
+                                                                                       </VBox.margin>
+                                                                                    </DatePicker>
+                                                                                    <Label layoutX="10.0" layoutY="98.0" text="Lieu de chargement">
+                                                                                       <VBox.margin>
+                                                                                          <Insets left="5.0" top="25.0" />
+                                                                                       </VBox.margin>
+                                                                                    </Label>
+                                                                                    <HBox prefHeight="27.0" prefWidth="244.0">
+                                                                                       <VBox.margin>
+                                                                                          <Insets left="5.0" right="5.0" />
+                                                                                       </VBox.margin>
+                                                                                       <children>
+                                                                                          <HBox>
+                                                                                             <children>
+                                                                                                <ComboBox fx:id="blPlaceLoadCode" maxWidth="250.0" prefHeight="27.0" prefWidth="94.0" promptText="BZV" />
+                                                                                             </children>
+                                                                                          </HBox>
+                                                                                          <HBox layoutX="10.0" layoutY="10.0">
+                                                                                             <children>
+                                                                                                <TextField fx:id="blPlaceLoadName" maxWidth="270.0" prefHeight="27.0" prefWidth="197.0" promptText="MIAMI" />
+                                                                                             </children>
+                                                                                          </HBox>
+                                                                                       </children>
+                                                                                    </HBox>
+                                                                                    <Label layoutX="15.0" layoutY="58.0" text="Lieu de déchargement">
+                                                                                       <VBox.margin>
+                                                                                          <Insets left="5.0" top="25.0" />
+                                                                                       </VBox.margin>
+                                                                                    </Label>
+                                                                                    <HBox layoutX="15.0" layoutY="75.0">
+                                                                                       <children>
+                                                                                          <HBox>
+                                                                                             <children>
+                                                                                                <ComboBox fx:id="blPlaceUnloadCode" maxWidth="250.0" prefHeight="27.0" prefWidth="86.0" promptText="PNR">
+                                                                                                   <HBox.margin>
+                                                                                                      <Insets left="5.0" />
+                                                                                                   </HBox.margin>
+                                                                                                </ComboBox>
+                                                                                             </children>
+                                                                                          </HBox>
+                                                                                          <HBox layoutX="10.0" layoutY="10.0">
+                                                                                             <children>
+                                                                                                <TextField fx:id="blPlaceUnloadName" maxWidth="270.0" prefHeight="27.0" prefWidth="194.0" promptText="POINTE NOIRE">
+                                                                                                   <HBox.margin>
+                                                                                                      <Insets right="2.0" />
+                                                                                                   </HBox.margin>
+                                                                                                </TextField>
+                                                                                             </children>
+                                                                                          </HBox>
+                                                                                       </children>
+                                                                                    </HBox>
+                                                                                 </children>
+                                                                              </VBox>
+                                                                              <VBox prefHeight="227.0" prefWidth="243.0" spacing="2.0" style="-fx-background-color: #e7e7e7;">
+                                                                                 <children>
+                                                                                    <Label text="Date et heure d'arrivée">
+                                                                                       <VBox.margin>
+                                                                                          <Insets left="5.0" top="2.0" />
+                                                                                       </VBox.margin>
+                                                                                    </Label>
+                                                                                    <HBox>
+                                                                                       <VBox.margin>
+                                                                                          <Insets left="5.0" />
+                                                                                       </VBox.margin>
+                                                                                       <children>
+                                                                                          <DatePicker fx:id="blArrivalDate" maxWidth="158.0" prefHeight="27.0" prefWidth="158.0" promptText="01/09/2017" />
+                                                                                          <TextField fx:id="blArrivalTime" layoutX="10.0" layoutY="10.0" maxWidth="118.0" prefHeight="27.0" prefWidth="63.0" promptText="12:00">
+                                                                                             <HBox.margin>
+                                                                                                <Insets left="5.0" />
+                                                                                             </HBox.margin>
+                                                                                          </TextField>
+                                                                                       </children>
+                                                                                    </HBox>
+                                                                                    <Label layoutX="10.0" layoutY="10.0" text="N° de ligne">
+                                                                                       <VBox.margin>
+                                                                                          <Insets left="5.0" top="2.0" />
+                                                                                       </VBox.margin>
+                                                                                    </Label>
+                                                                                    <HBox prefHeight="25.0" prefWidth="242.0">
+                                                                                       <children>
+                                                                                          <TextField fx:id="blNbr1" prefHeight="27.0" prefWidth="144.0" promptText="B/L N° ">
+                                                                                             <HBox.margin>
+                                                                                                <Insets bottom="5.0" left="5.0" />
+                                                                                             </HBox.margin>
+                                                                                          </TextField>
+                                                                                          <TextField fx:id="blNbr2" layoutX="10.0" layoutY="10.0" prefHeight="27.0" prefWidth="186.0" promptText="Total BLs">
+                                                                                             <HBox.margin>
+                                                                                                <Insets bottom="5.0" left="5.0" right="10.0" />
+                                                                                             </HBox.margin>
+                                                                                          </TextField>
+                                                                                       </children>
+                                                                                    </HBox>
+                                                                                    <!--Label layoutX="15.0" layoutY="133.0" text="Registration number">
+                                                                                       <VBox.margin>
+                                                                                          <Insets left="5.0" />
+                                                                                       </VBox.margin>
+                                                                                    </Label>
+                                                                                    <HBox layoutX="10.0" layoutY="152.0" prefHeight="30.0" prefWidth="242.0">
+                                                                                       <children>
+                                                                                          <TextField fx:id="blRegNbr1" prefHeight="27.0" prefWidth="110.0">
+                                                                                             <HBox.margin>
+                                                                                                <Insets bottom="5.0" left="5.0" />
+                                                                                             </HBox.margin>
+                                                                                          </TextField>
+                                                                                          <Text strokeType="OUTSIDE" strokeWidth="0.0" text="/">
+                                                                                             <font>
+                                                                                                <Font name="System Bold" size="19.0" />
+                                                                                             </font>
+                                                                                             <HBox.margin>
+                                                                                                <Insets left="2.0" />
+                                                                                             </HBox.margin>
+                                                                                          </Text>
+                                                                                          <TextField fx:id="blRegNbr2" layoutX="10.0" layoutY="10.0" prefHeight="27.0" prefWidth="110.0">
+                                                                                             <HBox.margin>
+                                                                                                <Insets bottom="5.0" left="2.0" right="10.0" />
+                                                                                             </HBox.margin>
+                                                                                          </TextField>
+                                                                                       </children>
+                                                                                    </HBox-->
+                                                                                    <HBox>
+                                                                                       <VBox.margin>
+                                                                                          <Insets left="5.0" />
+                                                                                       </VBox.margin>
+                                                                                       <children>
+                                                                                          <Label text="Nature" />
+                                                                                          <Label layoutX="10.0" layoutY="10.0" text="Date Dernière décharge">
+                                                                                             <HBox.margin>
+                                                                                                <Insets left="39.0" />
+                                                                                             </HBox.margin>
+                                                                                          </Label>
+                                                                                       </children>
+                                                                                    </HBox>
+                                                                                    <HBox>
+                                                                                       <VBox.margin>
+                                                                                          <Insets left="5.0" right="10.0" />
+                                                                                       </VBox.margin>
+                                                                                       <children>
+                                                                                          <ComboBox fx:id="blNature" maxWidth="250.0" prefHeight="27.0" prefWidth="71.0" promptText="22" />
+                                                                                          <DatePicker fx:id="blLastDischarge" layoutX="10.0" layoutY="10.0" maxWidth="250.0" prefHeight="27.0" prefWidth="149.0" promptText="Dernière décharge">
+                                                                                             <HBox.margin>
+                                                                                                <Insets left="10.0" />
+                                                                                             </HBox.margin>
+                                                                                          </DatePicker>
+                                                                                       </children>
+                                                                                    </HBox>
+                                                                                 </children>
+                                                                              </VBox>
+                                                                           </children>
+                                                                           <HBox.margin>
+                                                                              <Insets right="5.0" />
+                                                                           </HBox.margin>
+                                                                        </HBox>
+                                                                        <VBox prefHeight="233.0" prefWidth="264.0" spacing="2.0" style="-fx-background-color: #e7e7e7;">
+                                                                           <children>
+                                                                              <Label text="EXPORTATEUR/EXPEDITEUR">
+                                                                                 <font>
+                                                                                    <Font name="Impact" size="16.0" />
+                                                                                 </font>
+                                                                                 <VBox.margin>
+                                                                                    <Insets left="5.0" />
+                                                                                 </VBox.margin>
+                                                                              </Label>
+                                                                              <Label text="">
+                                                                                 <VBox.margin>
+                                                                                    <Insets left="5.0" />
+                                                                                 </VBox.margin>
+                                                                              </Label>
+                                                                              <TextField fx:id="blexporterCode" maxWidth="127.0" prefHeight="27.0" prefWidth="127.0" promptText="Code Exportateur">
+                                                                                 <VBox.margin>
+                                                                                    <Insets left="5.0" />
+                                                                                 </VBox.margin>
+                                                                              </TextField>
+                                                                              <TextField fx:id="blexporterName" maxWidth="300.0" prefHeight="27.0" prefWidth="229.0" promptText="Nom de l'exportateur">
+                                                                                 <VBox.margin>
+                                                                                    <Insets left="5.0" right="10.0" top="5.0" />
+                                                                                 </VBox.margin>
+                                                                              </TextField>
+                                                                              <TextArea fx:id="blexporterAddress" maxHeight="100.0" maxWidth="300.0" minHeight="68.0" prefHeight="68.0" prefWidth="235.0" promptText="Adresse de l'exportateur" style="-fx-background-radius: 5;">
+                                                                                 <VBox.margin>
+                                                                                    <Insets left="5.0" right="10.0" />
+                                                                                 </VBox.margin>
+                                                                              </TextArea>
+                                                                              <Label layoutX="10.0" layoutY="10.0" text="Agent maritime">
+                                                                                 <VBox.margin>
+                                                                                    <Insets left="5.0" top="7.0" />
+                                                                                 </VBox.margin>
+                                                                              </Label>
+                                                                              <HBox prefHeight="100.0" prefWidth="200.0">
+                                                                                 <children>
+                                                                                    <TextField fx:id="blShipAgentCode" prefHeight="27.0" prefWidth="91.0" promptText="Code">
+                                                                                       <HBox.margin>
+                                                                                          <Insets bottom="5.0" left="5.0" />
+                                                                                       </HBox.margin>
+                                                                                    </TextField>
+                                                                                    <TextField fx:id="blShipAgentName" layoutX="10.0" layoutY="10.0" prefHeight="27.0" prefWidth="186.0" promptText="Nom">
+                                                                                       <HBox.margin>
+                                                                                          <Insets bottom="5.0" right="10.0" />
+                                                                                       </HBox.margin>
+                                                                                    </TextField>
+                                                                                 </children>
+                                                                              </HBox>
+                                                                           </children>
+                                                                        </VBox>
+                                                                     </children>
+                                                                     <VBox.margin>
+                                                                        <Insets bottom="20.0" />
+                                                                     </VBox.margin>
+                                                                  </HBox>
+                                                                  <HBox prefHeight="236.0" prefWidth="1028.0">
+                                                                     <VBox.margin>
+                                                                        <Insets bottom="20.0" top="5.0" />
+                                                                     </VBox.margin>
+                                                                     <opaqueInsets>
+                                                                        <Insets />
+                                                                     </opaqueInsets>
+                                                                     <children>
+                                                                        <VBox>
+                                                                           <children>
+                                                                              <HBox>
+                                                                                 <children>
+                                                                                    <VBox prefHeight="253.0" prefWidth="198.0" spacing="2.0" style="-fx-background-color: #e7e7e7;">
+                                                                                       <children>
+                                                                                          <Label text="TRANSPORTEUR">
+                                                                                             <font>
+                                                                                                <Font name="Impact" size="16.0" />
+                                                                                             </font>
+                                                                                             <VBox.margin>
+                                                                                                <Insets left="5.0" />
+                                                                                             </VBox.margin>
+                                                                                          </Label>
+                                                                                          <TextField fx:id="blCarrierCode" maxWidth="140.0" prefHeight="27.0" prefWidth="140.0" promptText="Code transporteur">
+                                                                                             <VBox.margin>
+                                                                                                <Insets left="5.0" />
+                                                                                             </VBox.margin>
+                                                                                          </TextField>
+                                                                                          <TextField fx:id="blCarrierName" maxWidth="300.0" prefHeight="27.0" prefWidth="229.0" promptText="Nom du transporteur">
+                                                                                             <VBox.margin>
+                                                                                                <Insets left="5.0" right="10.0" top="5.0" />
+                                                                                             </VBox.margin>
+                                                                                          </TextField>
+                                                                                          <TextArea fx:id="blCarrierAddress" maxHeight="110.0" maxWidth="300.0" minHeight="68.0" prefHeight="110.0" prefWidth="183.0" promptText="Adresse du transporteur" style="-fx-background-radius: 5;">
+                                                                                             <VBox.margin>
+                                                                                                <Insets left="5.0" right="10.0" />
+                                                                                             </VBox.margin>
+                                                                                          </TextArea>
+                                                                                       </children>
+                                                                                       <HBox.margin>
+                                                                                          <Insets right="5.0" />
+                                                                                       </HBox.margin>
+                                                                                    </VBox>
+                                                                                    <VBox prefHeight="253.0" prefWidth="198.0" spacing="2.0" style="-fx-background-color: #e7e7e7;">
+                                                                                       <children>
+                                                                                          <Label text="NOTIFIER À">
+                                                                                             <font>
+                                                                                                <Font name="Impact" size="16.0" />
+                                                                                             </font>
+                                                                                             <VBox.margin>
+                                                                                                <Insets left="5.0" />
+                                                                                             </VBox.margin>
+                                                                                          </Label>
+                                                                                          <TextField fx:id="blnotifyCode" maxWidth="149.0" prefHeight="27.0" prefWidth="149.0" promptText="Code notify">
+                                                                                             <VBox.margin>
+                                                                                                <Insets left="5.0" />
+                                                                                             </VBox.margin>
+                                                                                          </TextField>
+                                                                                          <TextField fx:id="blnotifyName" maxWidth="300.0" prefHeight="27.0" prefWidth="229.0" promptText="Nom du notify">
+                                                                                             <VBox.margin>
+                                                                                                <Insets left="5.0" right="10.0" top="5.0" />
+                                                                                             </VBox.margin>
+                                                                                          </TextField>
+                                                                                          <TextArea fx:id="blnotifyAddress" maxHeight="110.0" maxWidth="300.0" minHeight="68.0" prefHeight="110.0" prefWidth="183.0" promptText="Adresse du notify" style="-fx-background-radius: 5;">
+                                                                                             <VBox.margin>
+                                                                                                <Insets left="5.0" right="10.0" />
+                                                                                             </VBox.margin>
+                                                                                          </TextArea>
+                                                                                       </children>
+                                                                                       <HBox.margin>
+                                                                                          <Insets right="5.0" />
+                                                                                       </HBox.margin>
+                                                                                    </VBox>
+                                                                                    <VBox layoutX="208.0" layoutY="10.0" prefHeight="253.0" prefWidth="198.0" spacing="2.0" style="-fx-background-color: #e7e7e7;">
+                                                                                       <children>
+                                                                                          <Label text="CONSIGNATAIRE">
+                                                                                             <font>
+                                                                                                <Font name="Impact" size="16.0" />
+                                                                                             </font>
+                                                                                             <VBox.margin>
+                                                                                                <Insets left="5.0" />
+                                                                                             </VBox.margin>
+                                                                                          </Label>
+                                                                                          <TextField fx:id="blconsigneeCode" maxWidth="143.0" prefHeight="27.0" prefWidth="143.0" promptText="Code consignataire">
+                                                                                             <VBox.margin>
+                                                                                                <Insets left="5.0" />
+                                                                                             </VBox.margin>
+                                                                                          </TextField>
+                                                                                          <TextField fx:id="blConsigneeName" maxWidth="300.0" prefHeight="27.0" prefWidth="229.0" promptText="Nom du consignataire">
+                                                                                             <VBox.margin>
+                                                                                                <Insets left="5.0" right="10.0" top="5.0" />
+                                                                                             </VBox.margin>
+                                                                                          </TextField>
+                                                                                          <TextArea fx:id="blconsigneeAddress" maxHeight="110.0" maxWidth="300.0" minHeight="68.0" prefHeight="110.0" prefWidth="183.0" promptText="Adresse du consignataire" style="-fx-background-radius: 5;">
+                                                                                             <VBox.margin>
+                                                                                                <Insets left="5.0" right="10.0" />
+                                                                                             </VBox.margin>
+                                                                                          </TextArea>
+                                                                                       </children>
+                                                                                    </VBox>
+                                                                                 </children>
+                                                                              </HBox>
+                                                                           </children>
+                                                                        </VBox>
+                                                                        <VBox layoutX="345.0" layoutY="10.0" prefHeight="253.0" prefWidth="456.0" spacing="2.0" style="-fx-background-color: #e7e7e7;">
+                                                                           <children>
+                                                                              <Label text="IDENTIFICATION MARCHANDISES">
+                                                                                 <font>
+                                                                                    <Font name="Impact" size="16.0" />
+                                                                                 </font>
+                                                                                 <VBox.margin>
+                                                                                    <Insets left="5.0" />
+                                                                                 </VBox.margin>
+                                                                              </Label>
+                                                                              <HBox>
+                                                                                 <VBox.margin>
+                                                                                    <Insets left="5.0" />
+                                                                                 </VBox.margin>
+                                                                                 <children>
+                                                                                    <Label text="Nature des colis" />
+                                                                                    <Label layoutX="10.0" layoutY="10.0" text="Volume(MC)">
+                                                                                       <HBox.margin>
+                                                                                          <Insets left="230.0" />
+                                                                                       </HBox.margin>
+                                                                                    </Label>
+                                                                                 </children>
+                                                                              </HBox>
+                                                                              <HBox>
+                                                                                 <VBox.margin>
+                                                                                    <Insets left="5.0" />
+                                                                                 </VBox.margin>
+                                                                                 <children>
+                                                                                    <ComboBox fx:id="blpkgCode" maxWidth="250.0" prefHeight="27.0" prefWidth="96.0" promptText="ex:CT" />
+                                                                                    <TextField fx:id="blpkgName" layoutX="10.0" layoutY="10.0" maxWidth="250.0" promptText="Carton">
+                                                                                       <HBox.margin>
+                                                                                          <Insets left="5.0" />
+                                                                                       </HBox.margin>
+                                                                                    </TextField>
+                                                                                    <TextField fx:id="blvolumeCBM" layoutX="76.0" layoutY="10.0" maxWidth="250.0" prefHeight="27.0" prefWidth="120.0" promptText="volume">
+                                                                                       <HBox.margin>
+                                                                                          <Insets left="39.0" />
+                                                                                       </HBox.margin>
+                                                                                    </TextField>
+                                                                                 </children>
+                                                                              </HBox>
+                                                                              <Label layoutX="10.0" layoutY="54.0" text="Marques et nombres">
+                                                                                 <VBox.margin>
+                                                                                    <Insets left="5.0" />
+                                                                                 </VBox.margin>
+                                                                              </Label>
+                                                                              <TextArea fx:id="blmarknb" prefHeight="41.0" prefWidth="428.0">
+                                                                                 <VBox.margin>
+                                                                                    <Insets left="5.0" right="5.0" />
+                                                                                 </VBox.margin>
+                                                                              </TextArea>
+                                                                              <HBox>
+                                                                                 <VBox.margin>
+                                                                                    <Insets left="5.0" />
+                                                                                 </VBox.margin>
+                                                                                 <children>
+                                                                                    <Label layoutX="10.0" layoutY="10.0" text="Poids brut">
+                                                                                       <HBox.margin>
+                                                                                          <Insets />
+                                                                                       </HBox.margin>
+                                                                                    </Label>
+                                                                                 </children>
+                                                                              </HBox>
+                                                                              <HBox prefHeight="27.0" prefWidth="440.0">
+                                                                                 <VBox.margin>
+                                                                                    <Insets left="5.0" right="5.0" />
+                                                                                 </VBox.margin>
+                                                                                 <children>
+                                                                                    <TextField fx:id="blgrossMass" layoutX="10.0" layoutY="10.0" maxWidth="250.0" prefHeight="27.0" prefWidth="193.0" promptText="POIDS BRUT">
+                                                                                       <HBox.margin>
+                                                                                          <Insets />
+                                                                                       </HBox.margin>
+                                                                                    </TextField>
+                                                                                 </children>
+                                                                              </HBox>
+                                                                              <HBox layoutX="15.0" layoutY="164.0">
+                                                                                 <children>
+                                                                                    <Label text="Nombre de conteneurs" />
+                                                                                    <Label layoutX="10.0" layoutY="10.0" text="Nombre de colis">
+                                                                                       <HBox.margin>
+                                                                                          <Insets left="123.0" />
+                                                                                       </HBox.margin>
+                                                                                    </Label>
+                                                                                 </children>
+                                                                                 <VBox.margin>
+                                                                                    <Insets left="5.0" />
+                                                                                 </VBox.margin>
+                                                                              </HBox>
+                                                                              <HBox layoutX="15.0" layoutY="183.0">
+                                                                                 <children>
+                                                                                    <TextField fx:id="blnbrCtn" maxWidth="256.0" prefHeight="27.0" prefWidth="241.0" promptText="NOMBRE DE CONTENEURS">
+                                                                                       <HBox.margin>
+                                                                                          <Insets bottom="3.0" />
+                                                                                       </HBox.margin>
+                                                                                    </TextField>
+                                                                                    <TextField fx:id="blnbrPkgs" layoutX="10.0" layoutY="10.0" maxWidth="250.0" prefHeight="27.0" prefWidth="222.0" promptText="NOMBRE DE COLIS">
+                                                                                       <HBox.margin>
+                                                                                          <Insets left="70.0" right="5.0" />
+                                                                                       </HBox.margin>
+                                                                                    </TextField>
+                                                                                 </children>
+                                                                                 <VBox.margin>
+                                                                                    <Insets left="5.0" />
+                                                                                 </VBox.margin>
+                                                                              </HBox>
+                                                                           </children>
+                                                                           <HBox.margin>
+                                                                              <Insets left="5.0" />
+                                                                           </HBox.margin>
+                                                                        </VBox>
+                                                                     </children>
+                                                                  </HBox>
+                                                                  <HBox layoutX="10.0" layoutY="293.0" prefHeight="230.0" prefWidth="1068.0">
+                                                                     <opaqueInsets>
+                                                                        <Insets />
+                                                                     </opaqueInsets>
+                                                                     <children>
+                                                                        <VBox prefHeight="270.0" prefWidth="1058.0">
+                                                                           <children>
+                                                                              <HBox prefHeight="100.0" prefWidth="593.0" style="-fx-background-color: #e7e7e7;">
+                                                                                 <VBox.margin>
+                                                                                    <Insets bottom="30.0" top="5.0" />
+                                                                                 </VBox.margin>
+                                                                                 <children>
+                                                                                    <VBox prefHeight="165.0" prefWidth="384.0">
+                                                                                       <children>
+                                                                                          <Label text="Designation des marchandises">
+                                                                                             <font>
+                                                                                    <Font name="Impact" size="16.0" />
+                                                                                 </font>
+                                                                                 <VBox.margin>
+                                                                                    <Insets left="5.0" />
+                                                                                 </VBox.margin>
+                                                                                          </Label>
+                                                                                          <TextArea fx:id="bldescGoods" prefHeight="142.0" prefWidth="367.0" promptText="Marchandises">
+                                                                                             <VBox.margin>
+                                                                                                <Insets left="5.0" right="10.0" />
+                                                                                             </VBox.margin>
+                                                                                          </TextArea>
+                                                                                       </children>
+                                                                                    </VBox>
+                                                                                    <VBox prefHeight="168.0" prefWidth="228.0">
+                                                                                       <children>
+                                                                                          <Label text="INFORMATION">
+                                                                                             <font>
+                                                                                                <Font name="Impact" size="16.0" />
+                                                                                             </font>
+                                                                                             <VBox.margin>
+                                                                                                <Insets left="5.0" />
+                                                                                             </VBox.margin>
+                                                                                          </Label>
+                                                                                          <TextArea fx:id="info" prefHeight="139.0" prefWidth="221.0">
+                                                                                             <VBox.margin>
+                                                                                                <Insets left="5.0" right="5.0" />
+                                                                                             </VBox.margin>
+                                                                                          </TextArea>
+                                                                                       </children>
+                                                                                       <HBox.margin>
+                                                                                          <Insets right="5.0" />
+                                                                                       </HBox.margin>
+                                                                                    </VBox>
+                                                                                    <VBox prefHeight="165.0" prefWidth="320.0" spacing="2.0" style="-fx-background-color: #e7e7e7;">
+                                                                                       <children>
+                                                                                          <Label text="LOCALISATION">
+                                                                                             <font>
+                                                                                                <Font name="Impact" size="16.0" />
+                                                                                             </font>
+                                                                                             <VBox.margin>
+                                                                                                <Insets left="5.0" />
+                                                                                             </VBox.margin>
+                                                                                          </Label>
+                                                                                          <ComboBox fx:id="blportCode" editable="true" maxWidth="181.0" prefHeight="27.0" prefWidth="181.0" promptText="Code">
+                                                                                             <VBox.margin>
+                                                                                                <Insets left="5.0" />
+                                                                                             </VBox.margin>
+                                                                                          </ComboBox>
+                                                                                          <TextField fx:id="blportName" maxWidth="300.0" prefHeight="27.0" prefWidth="229.0" promptText="Nom du magasin">
+                                                                                             <VBox.margin>
+                                                                                                <Insets left="5.0" right="10.0" top="5.0" />
+                                                                                             </VBox.margin>
+                                                                                          </TextField>
+                                                                                       </children>
+                                                                                       <HBox.margin>
+                                                                                          <Insets bottom="5.0" />
+                                                                                       </HBox.margin>
+                                                                                    </VBox>
+                                                                                 </children>
+                                                                              </HBox>
+                                                                              <HBox prefHeight="168.0" prefWidth="593.0" style="-fx-background-color: #e7e7e7;">
+                                                                                 <children>
+                                                                                    <VBox prefHeight="253.0" prefWidth="198.0" spacing="2.0" style="-fx-background-color: #e7e7e7;">
+                                                                                       <children>
+                                                                                          <Label text="FRET">
+                                                                                             <font>
+                                                                                                <Font name="Impact" size="16.0" />
+                                                                                             </font>
+                                                                                             <VBox.margin>
+                                                                                                <Insets left="5.0" />
+                                                                                             </VBox.margin>
+                                                                                          </Label>
+                                                                                          <Label text="Indicateur P/C">
+                                                                                             <VBox.margin>
+                                                                                                <Insets left="5.0" />
+                                                                                             </VBox.margin>
+                                                                                          </Label>
+                                                                                          <TextField fx:id="blpcInd" maxWidth="181.0" prefHeight="27.0" prefWidth="181.0" promptText="P">
+                                                                                             <VBox.margin>
+                                                                                                <Insets left="5.0" />
+                                                                                             </VBox.margin>
+                                                                                          </TextField>
+                                                                                          <Label layoutX="15.0" layoutY="33.0" text="Montant fret">
+                                                                                             <VBox.margin>
+                                                                                                <Insets left="5.0" />
+                                                                                             </VBox.margin>
+                                                                                          </Label>
+                                                                                          <TextField fx:id="blamount" maxWidth="300.0" prefHeight="27.0" prefWidth="229.0" promptText="2,500">
+                                                                                             <VBox.margin>
+                                                                                                <Insets left="5.0" right="10.0" />
+                                                                                             </VBox.margin>
+                                                                                          </TextField>
+                                                                                          <TextField fx:id="blcurrency" layoutX="15.0" layoutY="100.0" maxWidth="300.0" prefHeight="27.0" prefWidth="184.0" promptText="USD">
+                                                                                             <VBox.margin>
+                                                                                                <Insets left="5.0" right="10.0" />
+                                                                                             </VBox.margin>
+                                                                                          </TextField>
+                                                                                       </children>
+                                                                                    </VBox>
+                                                                                    <VBox layoutX="208.0" layoutY="10.0" prefHeight="165.0" prefWidth="276.0" spacing="2.0" style="-fx-background-color: #e7e7e7;">
+                                                                                       <children>
+                                                                                          <Label text="VALUES DECLARED FOR">
+                                                                                             <font>
+                                                                                                <Font name="Impact" size="16.0" />
+                                                                                             </font>
+                                                                                             <VBox.margin>
+                                                                                                <Insets left="5.0" />
+                                                                                             </VBox.margin>
+                                                                                          </Label>
+                                                                                          <Label text="Customs" />
+                                                                                          <HBox>
+                                                                                             <children>
+                                                                                                <TextField fx:id="blcustom1" maxWidth="166.0" prefHeight="27.0" prefWidth="166.0" promptText="Code" />
+                                                                                                <TextField fx:id="blcustom2" layoutX="10.0" layoutY="10.0" maxWidth="118.0" prefHeight="27.0" prefWidth="90.0" promptText="Name">
+                                                                                                   <HBox.margin>
+                                                                                                      <Insets left="5.0" />
+                                                                                                   </HBox.margin>
+                                                                                                </TextField>
+                                                                                             </children>
+                                                                                          </HBox>
+                                                                                          <Label layoutX="10.0" layoutY="33.0" text="Transport" />
+                                                                                          <HBox layoutX="10.0" layoutY="52.0">
+                                                                                             <children>
+                                                                                                <TextField fx:id="bltransport1" maxWidth="171.0" prefHeight="27.0" prefWidth="164.0" promptText="Code" />
+                                                                                                <TextField fx:id="bltransport2" layoutX="10.0" layoutY="10.0" maxWidth="118.0" prefHeight="27.0" prefWidth="92.0" promptText="Name">
+                                                                                                   <HBox.margin>
+                                                                                                      <Insets left="5.0" />
+                                                                                                   </HBox.margin>
+                                                                                                </TextField>
+                                                                                             </children>
+                                                                                          </HBox>
+                                                                                          <Label layoutX="10.0" layoutY="81.0" text="Insurance" />
+                                                                                          <HBox layoutX="10.0" layoutY="100.0">
+                                                                                             <children>
+                                                                                                <TextField fx:id="blinsurance1" maxWidth="163.0" prefHeight="27.0" prefWidth="163.0" promptText="Code" />
+                                                                                                <TextField fx:id="blinsurance2" layoutX="10.0" layoutY="10.0" maxWidth="118.0" prefHeight="27.0" prefWidth="96.0" promptText="Name">
+                                                                                                   <HBox.margin>
+                                                                                                      <Insets left="5.0" />
+                                                                                                   </HBox.margin>
+                                                                                                </TextField>
+                                                                                             </children>
+                                                                                          </HBox>
+                                                                                       </children>
+                                                                                       <HBox.margin>
+                                                                                          <Insets bottom="5.0" />
+                                                                                       </HBox.margin>
+                                                                                    </VBox>
+                                                                                    <VBox layoutX="406.0" layoutY="10.0" prefHeight="165.0" prefWidth="265.0" spacing="2.0" style="-fx-background-color: #e7e7e7;">
+                                                                                       <children>
+                                                                                          <Label text="SEALS">
+                                                                                             <font>
+                                                                                                <Font name="Impact" size="16.0" />
+                                                                                             </font>
+                                                                                             <VBox.margin>
+                                                                                                <Insets left="5.0" />
+                                                                                             </VBox.margin>
+                                                                                          </Label>
+                                                                                          <Label text="Seals number" />
+                                                                                          <HBox>
+                                                                                             <children>
+                                                                                                <TextField fx:id="blsealNbr" maxWidth="158.0" prefHeight="27.0" prefWidth="138.0" promptText="Seals Number" />
+                                                                                             </children>
+                                                                                          </HBox>
+                                                                                          <Label layoutX="10.0" layoutY="33.0" text="Marks" />
+                                                                                          <HBox layoutX="10.0" layoutY="52.0">
+                                                                                             <children>
+                                                                                                <TextField fx:id="blmarks" maxWidth="259.0" prefHeight="27.0" prefWidth="253.0" promptText="Marks" />
+                                                                                             </children>
+                                                                                          </HBox>
+                                                                                          <Label layoutX="10.0" layoutY="81.0" text="Party" />
+                                                                                          <HBox layoutX="10.0" layoutY="100.0">
+                                                                                             <children>
+                                                                                                <TextField fx:id="blparty1" maxWidth="158.0" prefHeight="27.0" prefWidth="64.0" promptText="Code" />
+                                                                                                <TextField fx:id="blparty2" layoutX="10.0" layoutY="10.0" maxWidth="186.0" prefHeight="27.0" prefWidth="186.0" promptText="Name">
+                                                                                                   <HBox.margin>
+                                                                                                      <Insets left="5.0" right="5.0" />
+                                                                                                   </HBox.margin>
+                                                                                                </TextField>
+                                                                                             </children>
+                                                                                          </HBox>
+                                                                                       </children>
+                                                                                       <HBox.margin>
+                                                                                          <Insets bottom="5.0" />
+                                                                                       </HBox.margin>
+                                                                                    </VBox>
+                                                                                 </children>
+                                                                              </HBox>
+                                                                           </children>
+                                                                        </VBox>
+                                                                     </children>
+                                                                     <VBox.margin>
+                                                                        <Insets top="5.0" />
+                                                                     </VBox.margin>
+                                                                  </HBox>
+                                                               </children>
+                                                               <padding>
+                                                                  <Insets bottom="50.0" left="5.0" top="5.0" />
+                                                               </padding>
+                                                            </VBox>
+                                                         </content>
+                                                      </ScrollPane>
+                                                   </children>
+                                                </AnchorPane>
+                                          </content>
+                                        </Tab>
+                                          <Tab fx:id="ctn" text="Conteneur">
+                                             <content>
+                                                <AnchorPane fx:id="ctnAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1000.0" prefWidth="1068.0">
+                                                   <children>
+                                                      <VBox prefHeight="544.0" prefWidth="1068.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="5.0" AnchorPane.rightAnchor="5.0" AnchorPane.topAnchor="5.0">
+                                                         <children>
+                                                            <HBox layoutX="10.0" layoutY="10.0">
+                                                               <opaqueInsets>
+                                                                  <Insets />
+                                                               </opaqueInsets>
+                                                               <children>
+                                                                  <HBox prefWidth="1067.0">
+                                                                     <children>
+                                                                        <VBox prefHeight="98.0" prefWidth="251.0" spacing="2.0" style="-fx-background-color: #e7e7e7;">
+                                                                           <children>
+                                                                              <Label text="Réference du conteneur">
+                                                                                 <VBox.margin>
+                                                                                    <Insets left="5.0" />
+                                                                                 </VBox.margin>
+                                                                              </Label>
+                                                                              <TextField fx:id="ctnRef" maxWidth="240.0" prefHeight="27.0" prefWidth="240.0" promptText="REFERENCE DU CONTENEUR">
+                                                                                 <VBox.margin>
+                                                                                    <Insets left="5.0" />
+                                                                                 </VBox.margin>
+                                                                              </TextField>
+                                                                              <Label layoutX="10.0" layoutY="10.0" text="Nombre de colis">
+                                                                                 <VBox.margin>
+                                                                                    <Insets left="5.0" />
+                                                                                 </VBox.margin>
+                                                                              </Label>
+                                                                              <TextField fx:id="ctnNbr" maxWidth="285.0" prefHeight="27.0" prefWidth="284.0" promptText="NOMBRE DE COLIS">
+                                                                                 <VBox.margin>
+                                                                                    <Insets left="5.0" right="5.0" />
+                                                                                 </VBox.margin>
+                                                                              </TextField>
+                                                                           </children>
+                                                                        </VBox>
+                                                                        <VBox layoutX="10.0" layoutY="10.0" prefHeight="98.0" prefWidth="98.0" spacing="2.0" style="-fx-background-color: #e7e7e7;">
+                                                                           <children>
+                                                                              <Label text="Type">
+                                                                                 <VBox.margin>
+                                                                                    <Insets left="5.0" />
+                                                                                 </VBox.margin>
+                                                                              </Label>
+                                                                              <ComboBox fx:id="ctnType" maxWidth="178.0" prefHeight="27.0" prefWidth="91.0" promptText="40GP">
+                                                                                 <VBox.margin>
+                                                                                    <Insets left="5.0" right="5.0" />
+                                                                                 </VBox.margin>
+                                                                              </ComboBox>
+                                                                              <Label layoutX="10.0" layoutY="10.0" text="Plein ou Vide">
+                                                                                 <VBox.margin>
+                                                                                    <Insets left="5.0" />
+                                                                                 </VBox.margin>
+                                                                              </Label>
+                                                                              <ComboBox fx:id="ctnFcl" maxWidth="285.0" prefHeight="27.0" prefWidth="222.0" promptText="1/1">
+                                                                                 <VBox.margin>
+                                                                                    <Insets left="5.0" right="5.0" />
+                                                                                 </VBox.margin>
+                                                                              </ComboBox>
+                                                                           </children>
+                                                                        </VBox>
+                                                                        <VBox layoutX="289.0" layoutY="10.0" prefHeight="98.0" prefWidth="316.0" spacing="2.0" style="-fx-background-color: #e7e7e7;">
+                                                                           <children>
+                                                                              <Label text="Seals">
+                                                                                 <VBox.margin>
+                                                                                    <Insets left="5.0" />
+                                                                                 </VBox.margin>
+                                                                              </Label>
+                                                                              <TextField fx:id="ctnSeals" maxWidth="178.0" prefHeight="27.0" prefWidth="76.0" promptText="3">
+                                                                                 <VBox.margin>
+                                                                                    <Insets left="5.0" />
+                                                                                 </VBox.margin>
+                                                                              </TextField>
+                                                                              <Label layoutX="10.0" layoutY="10.0" text="Marks">
+                                                                                 <VBox.margin>
+                                                                                    <Insets left="5.0" />
+                                                                                 </VBox.margin>
+                                                                              </Label>
+                                                                              <HBox>
+                                                                                 <VBox.margin>
+                                                                                    <Insets left="5.0" right="5.0" />
+                                                                                 </VBox.margin>
+                                                                                 <children>
+                                                                                    <TextField fx:id="ctnMarks1" maxWidth="285.0" prefHeight="27.0" prefWidth="180.0" promptText="13578" />
+                                                                                    <TextField fx:id="ctnMarks2" layoutX="10.0" layoutY="10.0" maxWidth="285.0" prefHeight="27.0" prefWidth="148.0" promptText="12345">
+                                                                                       <HBox.margin>
+                                                                                          <Insets left="5.0" />
+                                                                                       </HBox.margin>
+                                                                                    </TextField>
+                                                                                 </children>
+                                                                              </HBox>
+                                                                           </children>
+                                                                        </VBox>
+                                                                        <VBox layoutX="568.0" layoutY="10.0" prefHeight="98.0" prefWidth="394.0" spacing="2.0" style="-fx-background-color: #e7e7e7;">
+                                                                           <children>
+                                                                              <Label text="Sealing Party">
+                                                                                 <VBox.margin>
+                                                                                    <Insets left="5.0" />
+                                                                                 </VBox.margin>
+                                                                              </Label>
+                                                                              <ComboBox fx:id="ctnSealingParty" maxWidth="180.0" prefHeight="27.0" prefWidth="180.0" promptText="SH">
+                                                                                 <VBox.margin>
+                                                                                    <Insets left="5.0" />
+                                                                                 </VBox.margin>
+                                                                              </ComboBox>
+                                                                              <HBox>
+                                                                                 <VBox.margin>
+                                                                                    <Insets left="5.0" />
+                                                                                 </VBox.margin>
+                                                                                 <children>
+                                                                                    <Label text="Poids vide" />
+                                                                                    <Label layoutX="10.0" layoutY="10.0" text="Poids Marchandises">
+                                                                                       <HBox.margin>
+                                                                                          <Insets left="140.0" />
+                                                                                       </HBox.margin>
+                                                                                    </Label>
+                                                                                 </children>
+                                                                              </HBox>
+                                                                              <HBox>
+                                                                                 <VBox.margin>
+                                                                                    <Insets left="5.0" right="5.0" />
+                                                                                 </VBox.margin>
+                                                                                 <children>
+                                                                                    <TextField fx:id="ctnEmptyWeight" maxWidth="285.0" prefHeight="27.0" prefWidth="284.0" promptText="POIDS VIDE" />
+                                                                                    <TextField fx:id="ctnGoodsWeight" layoutX="10.0" layoutY="10.0" maxWidth="285.0" prefHeight="27.0" prefWidth="284.0" promptText="POIDS MARCHANDISE">
+                                                                                       <HBox.margin>
+                                                                                          <Insets left="20.0" />
+                                                                                       </HBox.margin>
+                                                                                    </TextField>
+                                                                                 </children>
+                                                                              </HBox>
+                                                                           </children>
+                                                                        </VBox>
+                                                                     </children>
+                                                                     <HBox.margin>
+                                                                        <Insets />
+                                                                     </HBox.margin>
+                                                                  </HBox>
+                                                               </children>
+                                                            </HBox>
+                                                            <Separator prefWidth="200.0" />
+                                                            <AnchorPane>
+                                                               <VBox.margin>
+                                                                  <Insets />
+                                                               </VBox.margin>
+                                                               <children>
+                                                                  <ScrollPane>
+                                                                     <content>
+                                                                        <TableView fx:id="ctnTable" prefHeight="870.0" prefWidth="1058.0">
+                                                                           <columns>
+                                                                              <TableColumn fx:id="refCtn" prefWidth="108.0" text="Reference" />
+                                                                              <TableColumn fx:id="nbrPkgCtn" prefWidth="136.0" text="Number of packages" />
+                                                                              <TableColumn fx:id="typeCtn" minWidth="8.0" prefWidth="136.0" text="Type of container" />
+                                                                              <TableColumn fx:id="EFCtn" prefWidth="107.0" text="Empty/Full" />
+                                                                              <TableColumn fx:id="sealCtn" prefWidth="69.0" text="Seals" />
+                                                                              <TableColumn fx:id="marks1Ctn" minWidth="1.0" prefWidth="89.0" text="Marks" />
+                                                                              <TableColumn fx:id="marks2Ctn" prefWidth="88.0" text="Marks" />
+                                                                              <TableColumn fx:id="sealPartyCtn" prefWidth="96.0" text="Sealing party" />
+                                                                              <TableColumn fx:id="emptyCtn" prefWidth="117.0" text="Empty Weight" />
+                                                                              <TableColumn fx:id="goodsCtn" prefWidth="111.0" text="Goods Weight" />
+                                                                           </columns>
+                                                                        </TableView>
+                                                                     </content>
+                                                                  </ScrollPane>
+                                                               </children>
+                                                            </AnchorPane>
+                                                         </children>
+                                                      </VBox>
+                                                   </children>
+                                                </AnchorPane>
+                                             </content>
+                                          </Tab>
+                                      </tabs>
+                                    </TabPane>
+                                 </children>
+                        </AnchorPane>
+                      </content>
+                    </ScrollPane>
+                     </children>
+              </VBox>
+            </items>
+          </SplitPane>
+          <HBox id="HBox" alignment="CENTER_LEFT" prefHeight="26.0" prefWidth="1283.0" spacing="5.0" VBox.vgrow="NEVER">
+            <children>
+              <Pane prefHeight="20.0" prefWidth="1258.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <ProgressBar fx:id="progress" layoutX="25.0" layoutY="1.0" prefHeight="20.0" prefWidth="308.0" progress="0.0" />
+                     </children>
+                  </Pane>
+              <Label fx:id="statusL" maxHeight="1.7976931348623157E308" maxWidth="-1.0" prefHeight="20.0" prefWidth="898.0" text="" textFill="WHITE" HBox.hgrow="ALWAYS">
+                <font>
+                  <Font size="11.0" fx:id="x3" />
+                </font>
+              </Label>
+              <Label fx:id="statusR" font="$x3" maxWidth="-1.0" minWidth="20.0" prefHeight="14.0" prefWidth="50.0" text="" textFill="WHITE" HBox.hgrow="NEVER" />
+            </children>
+            <padding>
+              <Insets bottom="3.0" left="3.0" right="3.0" top="3.0" />
+            </padding>
+          </HBox>
+        </children>
+      </VBox>
+   </children>
+</AnchorPane>

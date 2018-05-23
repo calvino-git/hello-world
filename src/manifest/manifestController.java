@@ -9,7 +9,6 @@ import database.ContainerJpaController;
 import database.GeneralInfoJpaController;
 import database.Container;
 import database.BillOfLandingJpaController;
-import support.ComboBoxAutoComplete;
 import support.AlertMsg;
 import support.Functions;
 import support.referenceTable;
@@ -53,6 +52,7 @@ import javafx.stage.WindowEvent;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import javax.persistence.criteria.*;
+import support.ComboBoxAutoComplete;
 
 /**
  * FXML Controller class
@@ -115,7 +115,6 @@ public class manifestController implements Initializable {
     private ComboBox<String> transportNationalityCode;
     @FXML
     private TextField transportNationalityName;
-    @FXML
     private TextField transportRegistration;
     @FXML
     private TextField transportMaster;
@@ -175,8 +174,6 @@ public class manifestController implements Initializable {
     private TextArea blCarrierAddress;
     @FXML
     private TextArea info;
-    @FXML
-    private ProgressBar progress;
     @FXML
     private TextField blexporterCode;
     @FXML
@@ -348,18 +345,22 @@ public class manifestController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle rb){
+        ref = new referenceTable();
         setContextMenu(tree2);
         ctnTable.setVisible(false);
-        //  TODO
-        client.setText("MANIFEST XML");
+        client.setText("CONGO ENERGY SERVICES");
+        customOfficeCode.setValue("DD141");
+        custumOfficName.setText("Bureau Principal Port");
+        customOfficeCode.setDisable(true);
+        blTypeCode.setValue("CO2");
         ctn.setDisable(true);
         bol.setDisable(true);
         
-        importXML.setDisable(false);
+        importXML.setDisable(true);
         enregistrerXML.setDisable(false);
         System.out.println("Demarrage du programme...");
         
-        ref = new referenceTable();
+        
         TextField test = new TextField();
         loadComboBox(blportCode, blportName, ref.localisation, 6);
         loadComboBox(blNature, test, ref.nature,2);
@@ -388,11 +389,9 @@ public class manifestController implements Initializable {
         new ComboBoxAutoComplete<>(blPlaceLoadCode);
         new ComboBoxAutoComplete<>(blNature);
         new ComboBoxAutoComplete<>(blpkgCode);
-        //  new ComboBoxAutoComplete<>(blportCode);
         new ComboBoxAutoComplete<>(ctnType);
         new ComboBoxAutoComplete<>(ctnFcl);
         new ComboBoxAutoComplete<>(ctnSealingParty);
-        
         
         blVoyageNbr.textProperty().bind(voyageNumber.textProperty());
         blDepDate.valueProperty().bind(departureDate.valueProperty());
@@ -401,17 +400,16 @@ public class manifestController implements Initializable {
         blCarrierCode.textProperty().bind(carrierCode.textProperty());
         blCarrierName.textProperty().bind(carrierName.textProperty());
         blCarrierAddress.textProperty().bind(carrierAdress.textProperty());
-//        blPlaceLoadCode.valueProperty().bind(departurePlaceCode.valueProperty());
-//        blPlaceLoadName.textProperty().bind(departurePlaceName.textProperty());
-//        blPlaceUnloadCode.valueProperty().bind(destPlaceCode.valueProperty());
-//        blPlaceUnloadName.textProperty().bind(destPlaceName.textProperty());
         
         nouveau.setOnAction(e ->{ 
                 clear(manifestTab.getContent());
                 clear(bol.getContent());
                 clear(ctn.getContent());
                 cargo.getChildren().clear();
-                        });
+                manifestTab.setDisable(false);
+                bol.setDisable(true);
+                ctn.setDisable(true);
+        });
         // 
         enregistrer.setOnAction(e -> {
             try {
@@ -423,10 +421,13 @@ public class manifestController implements Initializable {
         // 
         tabPane.getSelectionModel().selectedItemProperty().addListener((ObservableValue<? extends Tab> observable, Tab oldValue, Tab newValue) -> {
             if(newValue.equals(manifestTab)){
-                //nouveau.setOnAction(e -> clear(manifestTab.getContent()));
+                nouveau.setOnAction(e -> clear(manifestTab.getContent()));
+                nouveau.setText("Vider");
+                
                 manifestTab.setDisable(true);
                 bol.setDisable(false);
                 ctn.setDisable(false);
+                
                 enregistrer.setOnAction(event -> {
                     try {
                         saveManifest(event);
@@ -435,18 +436,24 @@ public class manifestController implements Initializable {
                     }
                 });
             }
-            if(newValue.equals(bol)){  
+            if(newValue.equals(bol)){ 
+                nouveau.setOnAction(e -> clear(bol.getContent()));
+                nouveau.setText("Vider");
+                
                 manifestTab.setDisable(false);
                 bol.setDisable(true);
                 ctn.setDisable(false);
-                //nouveau.setOnAction(e -> clear(bol.getContent()));
+                
                 enregistrer.setOnAction(event -> saveBol(event));
             }
             if(newValue.equals(ctn)){
-                //nouveau.setOnAction(e -> clear(ctn.getContent()));
+                nouveau.setOnAction(e -> clear(ctn.getContent()));
+                nouveau.setText("Vider");
+                
                 manifestTab.setDisable(false);
                 bol.setDisable(false);
                 ctn.setDisable(true);
+                
                 enregistrer.setOnAction(event -> {
                     try {
                         saveCtn(event);
@@ -459,6 +466,7 @@ public class manifestController implements Initializable {
         // 
         manifest = obj.createAwmds();
         
+        
     if(LocalDate.now().isAfter(LocalDate.of(2018, Month.DECEMBER, 31))){
             nouveau.setDisable(true);
             enregistrer.setDisable(true);
@@ -469,6 +477,7 @@ public class manifestController implements Initializable {
         }
         statusL.setText("Ready");
         statusL.setAlignment(Pos.CENTER_RIGHT);
+        
         loadTree();
     }
     
@@ -480,27 +489,18 @@ public class manifestController implements Initializable {
         awmds = obj.createAwmds();
         lineBol = 0;
         statusL.setText("traitement en cours");
-        progress.setProgress(0.1);
         
         if(getManifestInfo(currentGeneralSegment)) {
-            progress.setProgress(0.2);
-            awmds.setGeneralSegment(currentGeneralSegment);
-            progress.setProgress(0.4);
-            item = makeBranch(customOfficeCode.getValue() + "-" + voyageNumber.getText(), tree2.getRoot());
-            progress.setProgress(0.6);
-           
-            progress.setProgress(0.8);
-            manifest = awmds;
-            progress.setProgress(0.9);
             
+            awmds.setGeneralSegment(currentGeneralSegment);
+            item = makeBranch(customOfficeCode.getValue() + "-" + voyageNumber.getText(), tree2.getRoot());
+            manifest = awmds;
             if(currentGeneralSegment.getTotalsSegment().getTotalNumberOfBols() > 0){
-                focusTab("Information", "Traitement terminé.\nVoulez-vous ajouter un Titre de transport?", bol, enregistrer);
-                progress.setProgress(1);
                 lineBol++;
+                focusTab("Information", "Traitement terminé.\nVoulez-vous ajouter un Titre de transport?", bol, enregistrer);                
                 statusL.setText("Terminé.");
             }else{
                 (new AlertMsg()).alertMsg(AlertType.WARNING, "WARNING", "Le nombre de Titre de transport de ce manifest est égal à 0.", "Cliquer sur 'Nouveau' pour créer un nouveau manifest.");
-                progress.setProgress(1);
                 statusL.setText("Terminé.");
             }
         }        
@@ -760,27 +760,38 @@ public class manifestController implements Initializable {
             if(customOfficeCode.getValue().isEmpty()){
                 (new AlertMsg()).alertMsg(AlertType.INFORMATION, "Champ obligatoire", "Le code bureau doit être inséré obligatoirement!!!", "Merci de taper le CODE.");
                 customOfficeCode.requestFocus();
+                return false;
             }else{
                 agi.setCustomsOfficeCode(customOfficeCode.getValue());
                 if(voyageNumber.getText().isEmpty()){
                     (new AlertMsg()).alertMsg(AlertType.INFORMATION, "Champ obligatoire", "Le numero de voyage doit être inséré obligatoirement!!!", "Merci de taper ce numéro.");
+                    voyageNumber.requestFocus();
+                    return false;
                 }else{
                     agi.setVoyageNumber(voyageNumber.getText());
                     if(departureDate.getValue() == null){
                         (new AlertMsg()).alertMsg(AlertType.INFORMATION, "Champ obligatoire", "La date de départ doit être insérée obligatoirement!!!", "Merci de selectionner cette date.");
+                        departureDate.requestFocus();
+                        return false;
                     }else{
                         agi.setDateOfDeparture(departureDate.getValue().toString());
                         if(arrivalDate.getValue() == null){
                             (new AlertMsg()).alertMsg(AlertType.INFORMATION, "Champ obligatoire", "La date d'arrivée doit être insérée obligatoirement!!!", "Merci de selectionner cette date.");
+                            arrivalDate.requestFocus();
+                            return false;
                         }else{
                             agi.setDateOfArrival(arrivalDate.getValue().toString());
                             if(arrivalTime.getText().isEmpty()){
-                                (new AlertMsg()).alertMsg(AlertType.ERROR, "Cahmp obligatoire", "Heure d'arrivée doit être insérée", "Merci de tenir compte de cette exigence.");
+                                (new AlertMsg()).alertMsg(AlertType.ERROR, "Champ obligatoire", "Heure d'arrivée doit être insérée", "Merci de tenir compte de cette exigence.");
+                                arrivalTime.requestFocus();
+                                return false;
                             }else{
                                 agi.setTimeOfArrival(arrivalTime.getText());
                                 if(destPlaceCode.getValue().isEmpty()){
                                         (new AlertMsg()).alertMsg(AlertType.INFORMATION, "Champ obligatoire", "La place de destination doit être insérée obligatoirement!!!", "Merci d'insérer le lieu.");
-                                    }else{
+                                        destPlaceCode.requestFocus();
+                                        return false;
+                                }else{
                                         agl.setPlaceOfDestinationCode(destPlaceCode.getValue());
                                         if(departurePlaceCode.getValue().isEmpty()){
                                             (new AlertMsg()).alertMsg(AlertType.INFORMATION, "Champ obligatoire", "La place de départ doit être insérée obligatoirement!!!", "Merci d'insérer le lieu.");
@@ -799,17 +810,10 @@ public class manifestController implements Initializable {
                 agtic.setCarrierName(carrierName.getText());
                 agtic.setCarrierAddress(carrierAdress.getText());
             }else{
-                (new AlertMsg()).alertMsg(AlertType.ERROR, "Champ obligatoire", "CODE TRANSPORTEUR", "Merci de d'ínsérer le code transporteur.");
+                (new AlertMsg()).alertMsg(AlertType.ERROR, "Champ obligatoire", "code sydonia du transporteur", "Merci de d'insérer ce code.");
                 carrierCode.requestFocus();
                 return false;
             }
-//            if(trasnportDate.getValue() == null){
-//                (new AlertMsg()).alertMsg(AlertType.ERROR, "Champ obligatoire", "Champ date d'enregistrement vide!", "Merci de d'ínsérer la date");
-//                trasnportDate.requestFocus();
-//                return false;
-//            }else{
-//               agti.setDateOfRegistration(trasnportDate.getValue().toString()); 
-//            }
             
             if(transportModeCode.getValue() == null){
                 (new AlertMsg()).alertMsg(AlertType.ERROR, "Champ obligatoire", "Champ mode de transport vide!", "Merci de d'ínsérer le mode");
@@ -838,29 +842,33 @@ public class manifestController implements Initializable {
                 agti.setShippingAgent(null);
             }
             
-            if(totalNbrBol.getText().isEmpty()){
+            if(!totalNbrBol.getText().isEmpty()){
                 agt.setTotalNumberOfBols(Integer.valueOf(totalNbrBol.getText()));
             }else{
-                (new AlertMsg()).alertMsg(AlertType.ERROR, "Champ obligatoire", "le nombre de BLs ne peut pas être nul!", "Merci de d'ínsérer le mode");
+                (new AlertMsg()).alertMsg(AlertType.ERROR, "Champ obligatoire", "le nombre de BLs ne peut pas être vide!", "Merci de remplir.");
                 totalNbrBol.requestFocus();
+                return false;
             }
-            if(totalNbrCtn.getText().isEmpty()){
-                agt.setTotalNumberOfBols(Integer.valueOf(totalNbrCtn.getText()));
+            if(!totalNbrCtn.getText().isEmpty()){
+                agt.setTotalNumberOfContainers(Integer.valueOf(totalNbrCtn.getText()));
             }else{
-                (new AlertMsg()).alertMsg(AlertType.ERROR, "Champ obligatoire", "le nombre de BLs ne peut pas être nul!", "Merci de d'ínsérer le mode");
+                (new AlertMsg()).alertMsg(AlertType.ERROR, "Champ obligatoire", "le nombre de conteneurs ne peut pas être vide!", "Merci de remplir.");
                 totalNbrCtn.requestFocus();
+                return false;
             }
-            if(totalNbrPkg.getText().isEmpty()){
-                agt.setTotalNumberOfBols(Integer.valueOf(totalNbrPkg.getText()));
+            if(!totalNbrPkg.getText().isEmpty()){
+                agt.setTotalNumberOfPackages(Integer.valueOf(totalNbrPkg.getText()));
             }else{
-                (new AlertMsg()).alertMsg(AlertType.ERROR, "Champ obligatoire", "le nombre de BLs ne peut pas être nul!", "Merci de d'ínsérer le mode");
+                (new AlertMsg()).alertMsg(AlertType.ERROR, "Champ obligatoire", "le nombre de colis ne peut pas être vide!", "Merci de remplir.");
                 totalNbrPkg.requestFocus();
+                return false;
             }
-            if(totalGrossMass.getText().isEmpty()){
-                agt.setTotalNumberOfBols(Integer.valueOf(totalGrossMass.getText()));
+            if(!totalGrossMass.getText().isEmpty()){
+                agt.setTotalGrossMass(Integer.valueOf(totalGrossMass.getText()));
             }else{
-                (new AlertMsg()).alertMsg(AlertType.ERROR, "Champ obligatoire", "le nombre de BLs ne peut pas être nul!", "Merci de d'ínsérer le mode");
+                (new AlertMsg()).alertMsg(AlertType.ERROR, "Champ obligatoire", "le poids brut ne peut pas être vide!", "Merci de remplir.");
                 totalGrossMass.requestFocus();
+                return false;
             }
             
             if(!tonnageNet.getText().isEmpty())
@@ -873,16 +881,10 @@ public class manifestController implements Initializable {
             ag.setTotalsSegment(agt);
             ag.setLoadUnloadPlace(agl);
             ag.setTonnage(agto);
-            ag.setTransportInformation(agti);
-            
+            ag.setTransportInformation(agti);            
             lineMan++;
             System.out.println(" manifest N° " + lineMan);
             return true;
-//        }catch(Exception e){
-//            e.printStackTrace();
-//            (new AlertMsg()).alertMsg(AlertType.ERROR, "Champ Obligatoire", "Il y a des champs obligatoires!!!", "la valeur '" + e.getLocalizedMessage() + "' entrée non valide");
-//            return false;
-//        }
     }
     
     //creer le BL numero #lineNumber a ajouter au manifest. 
@@ -926,22 +928,19 @@ public class manifestController implements Initializable {
             abgs.setVolumeInCubicMeters(0.0);
         }
         
-        abgs.setSealsSegment(obj.createAwmdsBolSegmentGoodsSegmentSealsSegment());
-        abgs.getSealsSegment().setMarksOfSeals(this.blmarks.getText());
-        if(!this.blsealNbr.getText().isEmpty())
-            abgs.getSealsSegment().setNumberOfSeals(Integer.valueOf(this.blsealNbr.getText()));
+        abgs.setSealsSegment(null);
+//        abgs.getSealsSegment().setMarksOfSeals(this.blmarks.getText());
+//        if(!this.blsealNbr.getText().isEmpty())
+//            abgs.getSealsSegment().setNumberOfSeals(Integer.valueOf(this.blsealNbr.getText()));
+//        
+//        abgs.getSealsSegment().setSealingPartyCode(this.blparty1.getText());
         
-        abgs.getSealsSegment().setSealingPartyCode(this.blparty1.getText());
-        
-        //
         ablup.setPlaceOfLoadingCode(this.blPlaceLoadCode.getValue());
         ablup.setPlaceOfUnloadingCode(this.blPlaceUnloadCode.getValue());
         
-        //
         abl.setLocationCode(this.blportCode.getValue());
         abl.setLocationInfo(this.blportName.getText());
         
-        //
         abts.getConsignee().setConsigneeCode(this.blconsigneeCode.getText());
         abts.getConsignee().setConsigneeName(this.blConsigneeName.getText());
         abts.getConsignee().setConsigneeAddress(this.blconsigneeAddress.getText());
@@ -954,7 +953,6 @@ public class manifestController implements Initializable {
         abts.getNotify().setNotifyName(this.blnotifyName.getText());
         abts.getNotify().setNotifyAddress(this.blnotifyAddress.getText());
         
-        //
         if(!this.blcustom1.getText().isEmpty()){
         abvs.setCustomsSegment(obj.createAwmdsBolSegmentValueSegmentCustomsSegment());
         abvs.getCustomsSegment().setCustomsValue(Double.valueOf(this.blcustom1.getText()));
@@ -976,7 +974,7 @@ public class manifestController implements Initializable {
         abvs.getTransportSegment().setTransportValue(Double.valueOf(this.bltransport1.getText()));
         abvs.getTransportSegment().setTransportCurrency(this.bltransport2.getText());
         }
-        //
+        
         ab.setBolId(abbi);
         ab.setGoodsSegment(abgs);
         ab.setLoadUnloadPlace(ablup);
@@ -1057,10 +1055,8 @@ public class manifestController implements Initializable {
             case "OK":
                 tabPane.getSelectionModel().select(tab);
                 tab.disableProperty().set(false);
-                if(tab == bol){
-                    
-                    if(Integer.valueOf(totalNbrBol.getText()) > 0 && ( awmds.getBolSegment().isEmpty() || awmds.getBolSegment().size() < awmds.getGeneralSegment().getTotalsSegment().getTotalNumberOfBols())){
-                        
+                if(tab == bol){                    
+                    if(Integer.valueOf(totalNbrBol.getText()) > 0 && ( awmds.getBolSegment().isEmpty() || awmds.getBolSegment().size() < awmds.getGeneralSegment().getTotalsSegment().getTotalNumberOfBols())){                        
                         bol.setDisable(false);
                         manifestTab.setDisable(true);
                         ctn.setDisable(true);
@@ -1068,7 +1064,6 @@ public class manifestController implements Initializable {
                         //but.setText("Enregistrer le B/L");
                         but.setFont(Font.font(8));
                         blNbr1.setText(String.valueOf(lineBol));
-                        progress.setProgress(0);
                         clear(manifestArea);
         //                    saveManifest.setVisible(false);
         //                    saveManifest.setVisible(false);

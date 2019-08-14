@@ -31,7 +31,7 @@ public class WelcomeBean implements Serializable {
     public String bonjour(){
         this.message = nom;
         System.out.println(nameBean.getListName().size());
-        FacesContext.getCurrentInstance().getExternalContext().getFlash().put("message", this.message + nameBean.getListName().get(0));
+        FacesContext.getCurrentInstance().getExternalContext().getFlash().put("message", nameBean.getListName().indexOf(message));
         return "message.xhtml?faces-redirect=true";
     }
 
